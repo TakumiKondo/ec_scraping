@@ -22,6 +22,7 @@ class MensFashionPlusController {
         // JSONが返るか検証（NG）
 //        return Item("hoge", "huga", listOf("M", "L"))
 
+        // commit test
         // TODO: 送信処理(Slack通知とかNotify系)
     }
 
