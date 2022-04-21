@@ -1,7 +1,7 @@
 package com.demo.scraper.model
 
 data class Item(
-    private var code: String?,
-    private var name: String?,
-    private var stocks: List<String>?
+    var code: String?,
+    var name: String?,
+    var size: List<String>?
 )
