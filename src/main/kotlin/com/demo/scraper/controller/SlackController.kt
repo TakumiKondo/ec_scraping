@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping
 
 @Controller
 class SlackController {
-
+    // test commits:'*'
     @GetMapping("/slack")
     fun slack(): String {
         return "slack"
