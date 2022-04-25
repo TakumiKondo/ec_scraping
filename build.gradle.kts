@@ -21,9 +21,12 @@ dependencies {
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+	implementation("org.projectlombok:lombok:1.18.20")
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
+	implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
 	implementation("org.jsoup:jsoup:1.14.3")
+	implementation("com.slack.api:slack-api-client:1.21.2")
 }
 
 tasks.withType<KotlinCompile> {
