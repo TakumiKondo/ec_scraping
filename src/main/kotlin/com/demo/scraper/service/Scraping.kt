@@ -6,7 +6,7 @@ import org.jsoup.nodes.Document
 
 class Scraping(private val url: String) {
 
-    fun get(): Document? {
+    fun get(): Document {
         return Jsoup.connect(url).get()
     }
 }
