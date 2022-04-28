@@ -23,6 +23,4 @@ class MensFashionPlusController {
 
         // TODO: http statusを返すか検討
     }
-
-    // TODO: Exceptionのハンドリングどうするか検討
 }

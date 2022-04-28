@@ -1,5 +1,6 @@
 package com.demo.scraper.service
 
+import com.demo.scraper.exception.UrlNotFoundException
 import com.demo.scraper.model.Item
 import com.demo.scraper.repository.ItemRepository
 import org.jsoup.nodes.Document
@@ -14,7 +15,7 @@ class ItemService {
     private lateinit var itemRepository: ItemRepository
 
     fun getItem(code: String): Item {
-        val url = getUrl(code) ?: throw IllegalStateException("has not url of this code: $code")
+        val url = getUrl(code) ?: throw UrlNotFoundException("code[$code] not found in data.")
         val doc = getDoc(url)
         return toItem(doc)
     }
