@@ -11,7 +11,6 @@ import java.util.stream.Collectors
 @Service
 class ItemService {
     @Autowired
-    // TODO: item.dataを差し替えても動作するか外だしファイルとしての動作確認
     private lateinit var itemRepository: ItemRepository
 
     fun getItem(code: String): Item {
