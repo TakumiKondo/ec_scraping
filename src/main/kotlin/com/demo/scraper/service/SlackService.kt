@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service
 @Service
 @Slf4j
 class SlackService {
+    // TODO: 品切れに対応し、品切れであれば通知はしない
     fun notify(item: Item) {
         /**
          * 必要なApp側の設定
@@ -20,6 +21,7 @@ class SlackService {
          */
         val token = System.getenv("SLACK_TOKEN")
         val slack = Slack.getInstance()
+        // TODO: slackのメッセージを読みやすくする（入荷してたらステータスを緑にして通知するとか）
         val response = slack.methods(token).chatPostMessage { req: ChatPostMessageRequest.ChatPostMessageRequestBuilder ->
             req
                 .channel(System.getenv("SLACK_CHANNEL"))

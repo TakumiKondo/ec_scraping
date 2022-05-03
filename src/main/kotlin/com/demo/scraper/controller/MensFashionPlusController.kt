@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RestController
 import java.net.http.HttpResponse
 
+// TODO: 違うサイトの商品も対応したい
 @RestController
 class MensFashionPlusController {
     @Autowired
