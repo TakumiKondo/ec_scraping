@@ -1,6 +1,7 @@
 package com.demo.scraper.service
 
 import com.demo.scraper.model.Item
+import com.demo.scraper.util.EnvUtil
 import com.slack.api.Slack
 import com.slack.api.methods.request.chat.ChatPostMessageRequest
 import lombok.extern.slf4j.Slf4j
@@ -18,12 +19,12 @@ class SlackService {
          * ・アプリのインストール
          * ・Tokenの発行
          */
-        val token = System.getenv("SLACK_TOKEN")
+        val token = EnvUtil.slackToken()
         val slack = Slack.getInstance()
         // TODO: slackのメッセージを読みやすくする（入荷してたらステータスを緑にして通知するとか）
         val response = slack.methods(token).chatPostMessage { req: ChatPostMessageRequest.ChatPostMessageRequestBuilder ->
             req
-                .channel(System.getenv("SLACK_CHANNEL"))
+                .channel(EnvUtil.slackChannel())
                 .text(item.toString())
         }
 
