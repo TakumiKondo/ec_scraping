@@ -16,7 +16,7 @@ class ItemService {
     fun getItem(code: String): Item {
         val url = getUrl(code) ?: throw UrlNotFoundException("code[$code] not found in data.")
         val doc = getDoc(url)
-        return toItem(doc)
+        return toItem(doc, url)
     }
 
     private fun getUrl(code: String): String? {
@@ -27,7 +27,7 @@ class ItemService {
         return Scraping(url).get()
     }
 
-    private fun toItem(doc: Document): Item {
+    private fun toItem(doc: Document, url: String): Item {
         val code: String = doc.select("span.fs-c-productNumber__number").first()?.text().toString()
         val name: String = doc.select("span.fs-c-productNameHeading__name").first()?.text().toString()
         val size = doc.select("span.fs-c-variationCart__variationName__name")
@@ -37,6 +37,6 @@ class ItemService {
             }.map {
                 it.text()
             }
-        return Item(code, name, size.stream().collect(Collectors.toList()))
+        return Item(code, name, size.stream().collect(Collectors.toList()), url)
     }
 }

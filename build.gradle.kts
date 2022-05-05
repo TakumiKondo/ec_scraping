@@ -26,7 +26,9 @@ dependencies {
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
 	implementation("org.jsoup:jsoup:1.14.3")
-	implementation("com.slack.api:slack-api-client:1.21.2")
+	implementation("com.slack.api:slack-api-client:1.22.0")
+	implementation("com.slack.api:slack-api-model-kotlin-extension:1.22.0")
+	implementation("com.slack.api:slack-api-client-kotlin-extension:1.22.0")
 }
 
 tasks.withType<KotlinCompile> {
