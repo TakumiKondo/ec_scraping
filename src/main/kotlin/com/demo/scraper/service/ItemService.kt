@@ -5,7 +5,6 @@ import com.demo.scraper.model.Item
 import com.demo.scraper.repository.ItemRepository
 import org.jsoup.nodes.Document
 
-// TODO: 4. Serviceの抽象親クラスを作成しサイト構造に依存しない部分を切り出す
 abstract class ItemService(private var itemRepository: ItemRepository) {
 
     fun getItem(code: String): Item {

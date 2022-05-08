@@ -3,7 +3,6 @@ package com.demo.scraper.repository
 import org.springframework.core.io.ClassPathResource
 import java.io.*
 
-// TODO: 6. ItemDataFileRepositoryを抽象クラスにして、サイト固有のフィールドを持たなくする
 abstract class ItemDataFileRepository(file: String) : ItemRepository {
     private var file: String
     private var dataFileResource: ClassPathResource
@@ -20,7 +19,9 @@ abstract class ItemDataFileRepository(file: String) : ItemRepository {
         while (true) {
             line = buffered.readLine()
             if (line == null) return null
-            if (line.endsWith("/$code")) return line
+            if (endWith(code, line)) return line
         }
     }
+
+    protected abstract fun endWith(code: String, line: String): Boolean
 }

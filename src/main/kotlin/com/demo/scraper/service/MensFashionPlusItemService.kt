@@ -1,12 +1,12 @@
 package com.demo.scraper.service
 
 import com.demo.scraper.model.Item
+import com.demo.scraper.model.MensFashionPlusItem
 import com.demo.scraper.repository.MensFashionPlusItemDataFileRepository
 import org.jsoup.nodes.Document
 import org.springframework.stereotype.Service
 import java.util.stream.Collectors
 
-// TODO: 4. Serviceの抽象親クラスを作成し共通機能を切り出す
 @Service("MensFashionPlusItemService")
 class MensFashionPlusItemService(itemRepository: MensFashionPlusItemDataFileRepository) : ItemService(itemRepository){
 
@@ -21,6 +21,6 @@ class MensFashionPlusItemService(itemRepository: MensFashionPlusItemDataFileRepo
             }.map {
                 it.text()
             }
-        return Item(code, name, size.stream().collect(Collectors.toList()), url)
+        return MensFashionPlusItem(code, name, size.stream().collect(Collectors.toList()), url)
     }
 }
