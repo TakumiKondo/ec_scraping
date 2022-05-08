@@ -6,23 +6,17 @@ import com.demo.scraper.service.SlackService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
-import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.RestController
-import java.net.http.HttpResponse
 
-// TODO: 違うサイトの商品も対応したい
-@RestController
-class MensFashionPlusController {
-    @Autowired
-    lateinit var itemService: ItemService
+abstract class ItemController(private val itemService: ItemService) {
 
     @Autowired
     private lateinit var slackService: SlackService
 
-    // 取得処理(ECサイトから商品情報を取得)
-    @GetMapping("/item/{code}")
-    fun getItem(@PathVariable code: String) : ResponseEntity<ItemResponse> {
+    /**
+     * 継承先ではリクエストURLを指定させるだけの想定
+     */
+    open fun getItem(@PathVariable code: String) : ResponseEntity<ItemResponse> {
         val item = itemService.getItem(code)
         slackService.notify(item)
 

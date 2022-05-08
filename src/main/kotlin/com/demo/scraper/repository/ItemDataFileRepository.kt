@@ -1,22 +1,27 @@
 package com.demo.scraper.repository
 
 import org.springframework.core.io.ClassPathResource
-import org.springframework.stereotype.Repository
 import java.io.*
 
-@Repository
-class ItemDataFileRepository : ItemRepository {
-    private val file = "data/item.data"
-    private val dataFileResource = ClassPathResource(file)
+abstract class ItemDataFileRepository(file: String) : ItemRepository {
+    private var file: String
+    private var dataFileResource: ClassPathResource
+
+    init {
+        this.file = file
+        this.dataFileResource = ClassPathResource(file)
+    }
 
     override fun getUrl(code: String): String? {
         val `in` = dataFileResource.inputStream
         val buffered = BufferedReader(InputStreamReader(`in`))
-        var line: String? = null
+        var line: String?
         while (true) {
             line = buffered.readLine()
             if (line == null) return null
-            if (line.endsWith("/$code")) return line
+            if (endWith(code, line)) return line
         }
     }
+
+    protected abstract fun endWith(code: String, line: String): Boolean
 }
