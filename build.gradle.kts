@@ -22,6 +22,8 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	implementation("org.projectlombok:lombok:1.18.20")
+	implementation("org.junit.jupiter:junit-jupiter:5.7.0")
+	testImplementation("org.hamcrest:hamcrest-all:1.3")
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
