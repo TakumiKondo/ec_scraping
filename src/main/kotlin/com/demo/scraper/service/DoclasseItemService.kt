@@ -4,6 +4,7 @@ import com.demo.scraper.model.DoclasseItem
 import com.demo.scraper.model.Item
 import com.demo.scraper.repository.DoclasseItemDataFileRepository
 import org.jsoup.nodes.Document
+import org.jsoup.nodes.Element
 import org.springframework.stereotype.Service
 
 @Service("DoclasseItemService")
@@ -17,11 +18,12 @@ class DoclasseItemService(itemRepository: DoclasseItemDataFileRepository) : Item
         val scs: MutableMap<Pair<String?, String?>?, List<String>?> = mutableMapOf()
         elements.forEach {
             val keyPairText: List<String>? = it.select("figcaption").first()?.text()?.split(scsDelimiter)
-            val keyPair: Pair<String?, String?> = Pair(keyPairText?.get(0), keyPairText?.get(1).toString())
+            val keyPair: Pair<String?, String?> = Pair(keyPairText?.get(1), keyPairText?.get(0).toString())
             val size: List<String> = it.select("span.block-variation--radio-label")
-              // 在庫なしの場合の表記が不明なことと予約注文が可能なことから、一旦全サイズを在庫有りとして取得する
-//            .filter {
-//            }
+                .filter { sizeIt ->
+                    val sizeEach = sizeIt.parent()?.select("input#goods")?.first()
+                    hasStock(sizeEach)
+                }
                 .map {
                      eachSize -> eachSize.text()
                 }
@@ -29,5 +31,10 @@ class DoclasseItemService(itemRepository: DoclasseItemDataFileRepository) : Item
         }
 
         return DoclasseItem(code, name, scs, url)
+    }
+
+    override fun hasStock(ele: Element?): Boolean {
+        if (ele == null ) return true
+        return !ele.toString().contains(("disabled autocomplete"))
     }
 }

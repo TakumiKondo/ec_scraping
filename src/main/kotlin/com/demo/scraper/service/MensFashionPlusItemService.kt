@@ -4,6 +4,7 @@ import com.demo.scraper.model.Item
 import com.demo.scraper.model.MensFashionPlusItem
 import com.demo.scraper.repository.MensFashionPlusItemDataFileRepository
 import org.jsoup.nodes.Document
+import org.jsoup.nodes.Element
 import org.springframework.stereotype.Service
 import java.util.stream.Collectors
 
@@ -16,11 +17,16 @@ class MensFashionPlusItemService(itemRepository: MensFashionPlusItemDataFileRepo
         val name: String = doc.select("span.fs-c-productNameHeading__name").first()?.text().toString()
         val size = doc.select("span.fs-c-variationCart__variationName__name")
             .filter {
-                val ele = it.parent()?.select("span.fs-c-variationCart__variationName__stock--outOfStock")
-                !(ele != null && "在庫切れ" == ele.text())
+                val ele = it.parent()?.select("span.fs-c-variationCart__variationName__stock--outOfStock")?.first()
+                hasStock(ele)
             }.map {
                 it.text()
             }
         return MensFashionPlusItem(code, name, size.stream().collect(Collectors.toList()), url)
+    }
+
+    override fun hasStock(ele: Element?): Boolean {
+        if (ele == null) return true
+        return "在庫切れ" != ele.text()
     }
 }
