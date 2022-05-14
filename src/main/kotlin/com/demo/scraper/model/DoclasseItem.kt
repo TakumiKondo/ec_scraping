@@ -14,7 +14,7 @@ data class DoclasseItem (
 ) :Item {
     internal fun sizeListView(): String {
         return scs.map {
-            (it.key?.first + "（" + it.key?.second + "）×  " + it.value?.reduce { acc, s -> "$acc, $s" })
+            (it.key?.second + "（" + it.key?.first + "）×  " + it.value?.reduce { acc, s -> "$acc, $s" })
         }.reduce { acc, s -> "$acc \n $s" }
     }
 

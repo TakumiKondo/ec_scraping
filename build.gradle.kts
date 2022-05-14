@@ -24,6 +24,7 @@ dependencies {
 	implementation("org.projectlombok:lombok:1.18.20")
 	implementation("org.junit.jupiter:junit-jupiter:5.7.0")
 	testImplementation("org.hamcrest:hamcrest-all:1.3")
+	testImplementation("org.mockito:mockito-core:4.5.1")
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
@@ -31,6 +32,7 @@ dependencies {
 	implementation("com.slack.api:slack-api-client:1.22.0")
 	implementation("com.slack.api:slack-api-model-kotlin-extension:1.22.0")
 	implementation("com.slack.api:slack-api-client-kotlin-extension:1.22.0")
+	implementation("org.apache.commons:commons-lang3:3.12.0")
 }
 
 tasks.withType<KotlinCompile> {
