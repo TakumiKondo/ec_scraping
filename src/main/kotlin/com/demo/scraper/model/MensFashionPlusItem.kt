@@ -10,7 +10,7 @@ data class MensFashionPlusItem(
     var size: List<String>?,
     var link: String?,
 ) : Item {
-    internal fun sizeListView(): String {
+    private fun sizeListView(): String {
         return size?.reduce { acc, s -> "$acc, $s" } ?: ""
     }
 

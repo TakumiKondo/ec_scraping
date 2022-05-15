@@ -19,9 +19,9 @@ abstract class ItemDataFileRepository(file: String) : ItemRepository {
         while (true) {
             line = buffered.readLine()
             if (line == null) return null
-            if (endWith(code, line)) return line
+            if (hasLine(code, line)) return line
         }
     }
 
-    protected abstract fun endWith(code: String, line: String): Boolean
+    protected abstract fun hasLine(code: String, line: String): Boolean
 }
