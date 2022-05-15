@@ -4,11 +4,9 @@ import com.demo.scraper.model.Item
 import com.demo.scraper.util.EnvUtil
 import com.slack.api.Slack
 import com.slack.api.methods.request.chat.ChatPostMessageRequest
-import lombok.extern.slf4j.Slf4j
 import org.springframework.stereotype.Service
 
 @Service
-@Slf4j
 class SlackService {
     fun notify(item: Item) {
         /**
