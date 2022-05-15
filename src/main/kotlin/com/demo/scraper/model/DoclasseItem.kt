@@ -12,7 +12,7 @@ data class DoclasseItem (
     var scs: Map<Pair<String?, String?>?, List<String>?>,
     var link: String?,
 ) :Item {
-    internal fun sizeListView(): String {
+    private fun sizeListView(): String {
         return scs.map {
             (it.key?.second + "（" + it.key?.first + "）×  " + it.value?.reduce { acc, s -> "$acc, $s" })
         }.reduce { acc, s -> "$acc \n $s" }
