@@ -18,7 +18,7 @@ internal class DoclasseItemDataFileRepositoryTest {
 
     @BeforeEach
     fun setUp() {
-        method = sut::class.memberFunctions.first { it.name == "endWith" }
+        method = sut::class.memberFunctions.first { it.name == "hasLine" }
         method.isAccessible = true
     }
 
