@@ -18,7 +18,7 @@ internal class MensFashionPlusItemDataFileRepositoryTest {
 
     @BeforeAll
     fun setup() {
-        method = sut::class.memberFunctions.first { it.name == "endWith" }
+        method = sut::class.memberFunctions.first { it.name == "hasLine" }
         method.isAccessible = true
     }
 
