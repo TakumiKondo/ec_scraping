@@ -9,7 +9,6 @@ import org.springframework.boot.test.context.SpringBootTest
 class ScraperApplicationTests {
 
 	@Test
-	@Disabled
 	fun contextLoads() {
 	}
 
