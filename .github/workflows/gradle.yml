@@ -32,7 +32,8 @@ jobs:
 #      run: chmod +x gradlew
     - name: Build with Gradle
       uses: gradle/gradle-build-action@v2
-      with:
-         arguments: test
+    - run: ./gradlew test
+#       with:
+#          arguments: test
 #    - name: Test with Gradle
-#      run: ./gradlew test
+#       run: ./gradlew test
