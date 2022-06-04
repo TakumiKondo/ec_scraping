@@ -30,10 +30,10 @@ jobs:
         java-version: '11'
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
-    - name: Build with Gradle
-      uses: gradle/gradle-build-action@0d13054264b0bb894ded474f08ebb30921341cee
+#     - name: Build with Gradle
+#       uses: gradle/gradle-build-action@0d13054264b0bb894ded474f08ebb30921341cee
 #       uses: gradle/gradle-build-action@v2
-      with:
-        arguments: diktatCheck
-#    - name: Test with Gradle
-#       run: ./gradlew diktatCheck
+#       with:
+#         arguments: diktatCheck
+    - name: Test with Gradle
+      run: ./gradlew diktatCheck
