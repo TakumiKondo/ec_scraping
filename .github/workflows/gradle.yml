@@ -38,4 +38,5 @@ jobs:
 #       with:
 #         arguments: diktatCheck
     - name: Test with Gradle
-      run: ./gradlew diktatCheck
+#       run: ./gradlew diktatCheck
+      run: -b build.gradle.kts diktatCheck     
