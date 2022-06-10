@@ -20,7 +20,7 @@ on: [push]
 
 jobs:
   build:
-
+    name: scraping test and lint
     runs-on: ubuntu-latest
 
     steps:
