@@ -5,10 +5,15 @@ import com.demo.scraper.model.Item
 import com.demo.scraper.repository.DoclasseItemDataFileRepository
 import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
 @Service("DoclasseItemService")
-class DoclasseItemService(itemRepository: DoclasseItemDataFileRepository) : ItemService(itemRepository) {
+class DoclasseItemService(itemRepository: DoclasseItemDataFileRepository) : ItemService(itemRepository)
+{
+//    @Autowired
+//    private lateinit var stockBehavior: StockBehavior
+
     private val scsDelimiter = " "
 
     override fun toItem(doc: Document, url: String): Item {
@@ -22,7 +27,7 @@ class DoclasseItemService(itemRepository: DoclasseItemDataFileRepository) : Item
             val size: List<String> = it.select("span.block-variation--radio-label")
                 .filter { sizeIt ->
                     val sizeEach = sizeIt.parent()?.select("input#goods")?.first()
-                    hasStock(sizeEach)
+                    stockBehavior.hasStock(SiteType.DOCLASSE, sizeEach)
                 }
                 .map {
                      eachSize -> eachSize.text()
@@ -33,6 +38,7 @@ class DoclasseItemService(itemRepository: DoclasseItemDataFileRepository) : Item
         return DoclasseItem(code, name, scs, url)
     }
 
+    // TODO: 削除
     override fun hasStock(ele: Element?): Boolean {
         if (ele == null ) return true
         return !ele.toString().contains(("disabled autocomplete"))
