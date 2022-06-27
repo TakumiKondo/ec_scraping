@@ -9,6 +9,10 @@ name: Java CI with Gradle
 
 on: [push]
 
+permissions:
+  id-token: write
+  contents: write
+  
 jobs:
   build:
     name: scraping test and lint
