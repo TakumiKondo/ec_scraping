@@ -25,7 +25,7 @@ jobs:
         run: chmod +x gradlew
       - name: Test with Gradle
         run: ./gradlew test
-#      - name: Build with Gradle
+#      - name: Build with Gradlegi
 #        uses: gradle/gradle-build-action@0d13054264b0bb894ded474f08ebb30921341cee
 #        with:
 #          arguments: -b build.gradle.kts diktatCheck
@@ -34,10 +34,12 @@ jobs:
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ap-northeast-1
+#        with:
+#          role-to-assume: ${{ AWS_ECR_ROLE }}
+#          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+#          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+#          aws-region: ap-northeast-1
+      - name: echo test
         run: |
           echo $aws-access-key-id
           echo $aws-secret-access-key
