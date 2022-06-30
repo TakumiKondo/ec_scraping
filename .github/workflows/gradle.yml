@@ -12,38 +12,35 @@ on: [push]
 # permissions:
 #   id-token: write
 #   contents: write
-  
+
 jobs:
   build:
     name: scraping test and lint
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v2
-#       - name: Set up JDK 11
-#         uses: actions/setup-java@v2
-#         with:
-#           distribution: 'temurin'
-#           java-version: '11'
-#       JDKをコメントアウトしたら、Configure AWS CredentialsでJAVA_HOMEのエラーが出なくなった
+      - name: Set up JDK 11
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'temurin'
+          java-version: '11'
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
-#      - name: Test with Gradle
-#        run: ./gradlew test
+      - name: Test with Gradle
+        run: ./gradlew test
 #      - name: Build with Gradle
 #        uses: gradle/gradle-build-action@0d13054264b0bb894ded474f08ebb30921341cee
 #        with:
 #          arguments: -b build.gradle.kts diktatCheck
-#       - name: build
-#         run: ./gradlew build
-
+      - name: build
+        run: ./gradlew build
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
-#          role-to-assume: ${{ AWS_ECR_ROLE }}
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ap-northeast-1
+          
 #      - name: echo test
 #         with:
 #           role-to-assume: ${{ secrets.AWS_ECR_ROLE }}
