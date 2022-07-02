@@ -51,6 +51,5 @@ jobs:
       - uses: docker/build-push-action@v2
         with:
           push: true
-#           tags: ${{ env.AWS_ECR_RESISTORY }}/${{ env.AWS_ECR_REPO }}
-          tags: 218640569039.dkr.ecr.ap-northeast-1.amazonaws.com/docker-demo:latest
-          
+          tags: ${{ secrets.AWS_ECR_RESISTORY }}/${{ secrets.AWS_ECR_REPO }}:${{ github.sha }}
+         
