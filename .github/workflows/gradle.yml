@@ -26,12 +26,12 @@ jobs:
           java-version: '11'
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
-#       - name: Test with Gradle
-#         run: ./gradlew test
-#      - name: Build with Gradle
-#        uses: gradle/gradle-build-action@0d13054264b0bb894ded474f08ebb30921341cee
-#        with:
-#          arguments: -b build.gradle.kts diktatCheck
+      - name: Test with Gradle
+        run: ./gradlew test
+      - name: Build with Gradle
+        uses: gradle/gradle-build-action@0d13054264b0bb894ded474f08ebb30921341cee
+        with:
+          arguments: -b build.gradle.kts diktatCheck
       - name: build
         run: ./gradlew build
       - name: Configure AWS Credentials
@@ -44,9 +44,6 @@ jobs:
       - name: Login to Amazon ECR
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
-#         with:
-#           registries: ${{ secrets.AWS_ECR_RESISTORY }}
-#           registryIds: docker-demo
         
       - uses: docker/build-push-action@v2
         with:
