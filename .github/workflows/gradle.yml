@@ -36,7 +36,7 @@ jobs:
       - name: build
         run: ./gradlew build
       - name: build target
-        run: cd build | ls
+        run: cd ./build | ls
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
