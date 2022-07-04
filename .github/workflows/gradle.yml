@@ -48,8 +48,13 @@ jobs:
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
         
-      - uses: docker/build-push-action@v2
-        with:
-          push: true
-          tags: ${{ secrets.AWS_ECR_RESISTORY }}/${{ secrets.AWS_ECR_REPO }}:${{ github.sha }}
+      - name: Build, tag, and push image to Amazon ECR
+        run: |
+          docker build -t ${{ secrets.AWS_ECR_RESISTORY }}/${{ secrets.AWS_ECR_REPO }}:latest .
+          docker push ${{ secrets.AWS_ECR_RESISTORY }}/${{ secrets.AWS_ECR_REPO }}:latest
+          
+#       - uses: docker/build-push-action@v2
+#         with:
+#           push: true
+#           tags: ${{ secrets.AWS_ECR_RESISTORY }}/${{ secrets.AWS_ECR_REPO }}:${{ github.sha }}
          
