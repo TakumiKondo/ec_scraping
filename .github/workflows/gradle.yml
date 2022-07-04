@@ -35,6 +35,8 @@ jobs:
 #           arguments: -b build.gradle.kts diktatCheck
       - name: build
         run: ./gradlew build
+      - name: build target
+        run: ls ./build
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
