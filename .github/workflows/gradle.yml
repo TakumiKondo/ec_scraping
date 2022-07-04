@@ -50,7 +50,7 @@ jobs:
         
       - name: Build, tag, and push image to Amazon ECR
         run: |
-          docker build --build-arg JAR_FILE=./build/libs/*.jar -t ${{ secrets.AWS_ECR_REPO }} .
+          docker build -t ${{ secrets.AWS_ECR_RESISTORY }}/${{ secrets.AWS_ECR_REPO }}:latest .
           docker push ${{ secrets.AWS_ECR_RESISTORY }}/${{ secrets.AWS_ECR_REPO }}:latest
           
 #       - uses: docker/build-push-action@v2
